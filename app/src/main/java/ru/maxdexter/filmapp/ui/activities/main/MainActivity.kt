@@ -1,13 +1,16 @@
 package ru.maxdexter.filmapp.ui.activities.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.maxdexter.filmapp.R
+import androidx.appcompat.app.AppCompatActivity
+import ru.maxdexter.filmapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
