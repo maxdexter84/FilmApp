@@ -5,13 +5,16 @@ import dagger.BindsInstance
 import dagger.Component
 import ru.maxdexter.filmapp.di.subcomponent.FilmsListSubComponent
 import ru.maxdexter.filmapp.di.subcomponent.SubComponentsModule
+import javax.inject.Singleton
 
-@Component(modules = [
-    NetworkModule::class,
-    MainModule::class,
-    SubComponentsModule::class,
-    ViewModelBuilderModule::class
-]
+@Singleton
+@Component(
+    modules = [
+        NetworkModule::class,
+        MainModule::class,
+        SubComponentsModule::class,
+        ViewModelBuilderModule::class
+    ]
 )
 interface AppComponent {
 

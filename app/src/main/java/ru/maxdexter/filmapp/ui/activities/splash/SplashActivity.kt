@@ -2,12 +2,12 @@ package ru.maxdexter.filmapp.ui.activities.splash
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import ru.maxdexter.filmapp.R
 import ru.maxdexter.filmapp.databinding.ActivitySplashBinding
 import ru.maxdexter.filmapp.ui.activities.main.MainActivity

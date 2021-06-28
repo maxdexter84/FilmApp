@@ -6,16 +6,17 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.maxdexter.filmapp.databinding.ItemMovieBinding
 import ru.maxdexter.filmapp.ui.model.MovieUI
 
-class MovieViewHolder(private val binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
+class MovieViewHolder(private val binding: ItemMovieBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
 
-    fun bind(item: MovieUI){
+    fun bind(item: MovieUI) {
         binding.tvTitle.text = item.title
         binding.tvDescription.text = item.description
     }
 
-    companion object{
-        fun create(parent: ViewGroup): MovieViewHolder{
+    companion object {
+        fun create(parent: ViewGroup): MovieViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ItemMovieBinding.inflate(layoutInflater, parent, false)
             return MovieViewHolder(binding)

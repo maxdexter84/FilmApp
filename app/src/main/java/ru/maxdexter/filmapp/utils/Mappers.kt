@@ -9,7 +9,7 @@ class Mappers {
 
     companion object {
         fun mapResultListToMovieUiList(movies: Movies): List<MovieUI> {
-           return movies.results.map { mapResultToMovieUi(it) }
+            return movies.results.map { mapResultToMovieUi(it) }
         }
 
         private fun mapResultToMovieUi(result: Result): MovieUI {
