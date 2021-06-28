@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.maxdexter.filmapp.databinding.ItemMovieBinding
 import ru.maxdexter.filmapp.ui.model.MovieUI
+import ru.maxdexter.filmapp.utils.setImage
 
 class MovieViewHolder(private val binding: ItemMovieBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -13,6 +14,7 @@ class MovieViewHolder(private val binding: ItemMovieBinding) :
     fun bind(item: MovieUI) {
         binding.tvTitle.text = item.title
         binding.tvDescription.text = item.description
+        binding.ivMovieImage.setImage(item.image)
     }
 
     companion object {

@@ -28,7 +28,7 @@ class FilmsListViewModel @Inject constructor(private val useCase: LoadAllMoviesU
         loadData()
     }
 
-    private fun loadData(){
+     fun loadData(){
         viewModelScope.launch {
             useCase.getAllMovies().collect {
                 _data.value = it

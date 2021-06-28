@@ -10,11 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import ru.maxdexter.filmapp.App
 import ru.maxdexter.filmapp.databinding.FilmsListFragmentBinding
 import ru.maxdexter.filmapp.domain.common.LoadState
 import ru.maxdexter.filmapp.ui.adapters.MovieAdapter
 import ru.maxdexter.filmapp.ui.model.MovieUI
+import ru.maxdexter.filmapp.utils.hide
+import ru.maxdexter.filmapp.utils.show
 import javax.inject.Inject
 
 class FilmsListFragment : Fragment() {
@@ -47,18 +50,30 @@ class FilmsListFragment : Fragment() {
             when (it) {
                 is LoadState.Error -> {
                     Log.e("LOAD_ERROR", it.e.message.toString())
+                    binding.progress.hide()
+                    showSnackbar()
+
                 }
                 is LoadState.Success -> {
                     movieAdapter.submitList(it.data as List<MovieUI>)
                     binding.recycler.adapter = movieAdapter
+                    binding.progress.hide()
                 }
                 LoadState.Loading -> {
+                    binding.progress.show()
                 }
             }
         })
 
 
         return binding.root
+    }
+
+    private fun showSnackbar() {
+        Snackbar.make(binding.root, "Ошибка соединения!", Snackbar.LENGTH_LONG)
+            .setAction("Повторить") {
+                viewModel.loadData()
+            }.show()
     }
 
 
