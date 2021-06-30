@@ -9,8 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.newFixedThreadPoolContext
 import ru.maxdexter.filmapp.App
 import ru.maxdexter.filmapp.databinding.FilmsListFragmentBinding
 import ru.maxdexter.filmapp.domain.common.LoadState
@@ -44,8 +48,14 @@ class FilmsListFragment : Fragment() {
     ): View {
         binding = FilmsListFragmentBinding.inflate(layoutInflater, container, false)
         movieAdapter = MovieAdapter()
-        binding.recycler.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        stateObserver()
+
+
+        return binding.root
+    }
+
+    private fun stateObserver() {
         viewModel.data.observe(viewLifecycleOwner, {
             when (it) {
                 is LoadState.Error -> {
@@ -64,9 +74,6 @@ class FilmsListFragment : Fragment() {
                 }
             }
         })
-
-
-        return binding.root
     }
 
     private fun showSnackbar() {
@@ -75,6 +82,8 @@ class FilmsListFragment : Fragment() {
                 viewModel.loadData()
             }.show()
     }
+
+
 
 
 }
